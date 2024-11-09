@@ -24,16 +24,22 @@ const SearchBar = ({ onSubmit }) => {
   return (
     <header className={s.header}>
       <form onSubmit={handleSubmit} className={s.form}>
-        <input
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-          value={query}
-          onChange={handleInputChange}
-          className={s.input}
-        />
-        <button type="submit" className={s.button}></button>
+        <div className={s.wrap}>
+          <input
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            value={query}
+            onChange={handleInputChange}
+            className={s.input}
+          />
+          <button
+            type="submit"
+            className={s.button}
+            aria-label="Search"
+          ></button>
+        </div>
       </form>
     </header>
   );
