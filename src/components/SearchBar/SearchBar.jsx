@@ -1,5 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { FaSearch } from "react-icons/fa";
 import s from "./SearchBar.module.css";
 
 const SearchBar = ({ onSubmit }) => {
@@ -34,11 +35,9 @@ const SearchBar = ({ onSubmit }) => {
             onChange={handleInputChange}
             className={s.input}
           />
-          <button
-            type="submit"
-            className={s.button}
-            aria-label="Search"
-          ></button>
+          <button type="submit" className={s.button} aria-label="Search">
+            <FaSearch />
+          </button>
         </div>
       </form>
     </header>

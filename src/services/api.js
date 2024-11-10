@@ -4,13 +4,18 @@ const API_KEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
 const BASE_URL = "https://api.unsplash.com";
 
 const fetchImages = async (query, page = 1) => {
+  // console.log("API_KEY:", API_KEY);
+
   try {
     const response = await axios.get(`${BASE_URL}/search/photos`, {
       params: {
         query,
         page,
-        per_page: 10,
-        client_id: API_KEY,
+        per_page: 12,
+        // client_id: API_KEY,
+      },
+      headers: {
+        Authorization: `Client-ID ${API_KEY}`,
       },
     });
     return response.data;
