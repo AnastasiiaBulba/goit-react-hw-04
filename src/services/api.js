@@ -4,7 +4,7 @@ import axios from "axios";
 const API_KEY = "KUV4twdTRl_cGZNGrPRpKulwP2hUJB8b7db6y9eqOuY";
 const BASE_URL = "https://api.unsplash.com";
 
-const fetchImages = async (query, per_page = 12, page = 1) => {
+const fetchImages = async (query, page = 1) => {
   // console.log("API_KEY:", API_KEY);
 
   try {
@@ -12,7 +12,7 @@ const fetchImages = async (query, per_page = 12, page = 1) => {
       params: {
         query,
         page,
-        per_page,
+        per_page: 12,
         // client_id: API_KEY,
       },
       headers: {
