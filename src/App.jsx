@@ -4,6 +4,7 @@ import ImageGallery from "./components/ImageGallery/ImageGallery";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
+import Loader from "./components/Loader/Loader";
 import { Toaster } from "react-hot-toast";
 import fetchImages from "./services/api";
 import "./App.css";
@@ -15,6 +16,7 @@ const App = () => {
   const [totalImages, setTotalImages] = useState(0);
   const [error, setError] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSearchSubmit = (query) => {
     setSearchQuery(query);
@@ -31,6 +33,7 @@ const App = () => {
     if (!searchQuery) return;
 
     const loadImage = async () => {
+      setLoading(true);
       try {
         const data = await fetchImages(searchQuery, page);
         setImages((prevImages) => [...prevImages, ...data.results]);
@@ -38,6 +41,8 @@ const App = () => {
       } catch (error) {
         setError("Error fetching images.");
         console.error("Error fetching images:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -62,12 +67,16 @@ const App = () => {
       <ImageGallery
         images={images}
         onImageClick={openModal}
-        fetchImages={fetchImages}
-        searchQuery={searchQuery}
-        page={page}
+        // fetchImages={fetchImages}
+        // searchQuery={searchQuery}
+        // page={page}
       />
 
-      {images.length < totalImages && <LoadMoreBtn onClick={loadMoreImages} />}
+      {loading && <Loader />}
+      {images.length < totalImages && !loading && (
+        <LoadMoreBtn onClick={loadMoreImages} />
+      )}
+
       <ImageModal
         isOpen={!!selectedImage}
         onClose={closeModal}

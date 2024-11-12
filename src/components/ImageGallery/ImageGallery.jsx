@@ -1,31 +1,25 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import ImageCard from "../ImageCard/ImageCard";
-import Loader from "../Loader/Loader";
+// import Loader from "../Loader/Loader";
 import s from "./ImageGallery.module.css";
 
-const ImageGallery = ({
-  images,
-  onImageClick,
-  fetchImages,
-  searchQuery,
-  page,
-}) => {
-  const [loading, setLoading] = useState(false);
+const ImageGallery = ({ images, onImageClick }) => {
+  // const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const loadImages = async () => {
-      setLoading(true);
-      try {
-        await fetchImages(searchQuery, page);
-      } catch (error) {
-        console.error("Error fetching images:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const loadImages = async () => {
+  //     setLoading(true);
+  //     try {
+  //       await fetchImages(searchQuery, page);
+  //     } catch (error) {
+  //       console.error("Error fetching images:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    loadImages();
-  }, [searchQuery, page, fetchImages]);
+  //   loadImages();
+  // }, [searchQuery, page, fetchImages]);
 
   return (
     <div className={s.wrapperGallery}>
@@ -37,7 +31,7 @@ const ImageGallery = ({
         ))}
       </ul>
 
-      {loading && <Loader />}
+      {/* {loading && <Loader />} */}
     </div>
   );
 };
